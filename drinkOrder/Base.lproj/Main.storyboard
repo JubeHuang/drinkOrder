@@ -67,7 +67,7 @@
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="drinkImage" destination="He6-G9-zth" id="T0Q-Ex-sjA"/>
-                                            <segue destination="H8k-qC-U4W" kind="show" id="MJD-jT-xDF"/>
+                                            <segue destination="H8k-qC-U4W" kind="show" destinationCreationSelector="showDetail:" id="MJD-jT-xDF"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -556,8 +556,11 @@
                                                                     </constraints>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" image="minus"/>
+                                                                    <connections>
+                                                                        <action selector="minusNum:" destination="H8k-qC-U4W" eventType="touchUpInside" id="BEv-qD-e9y"/>
+                                                                    </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tx-Wc-V4X">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tx-Wc-V4X">
                                                                     <rect key="frame" x="56.000000000000007" y="0.0" width="100.66666666666669" height="53.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="NotoSansCJKtc-Black" family="Noto Sans CJK TC" pointSize="36"/>
                                                                     <nil key="textColor"/>
@@ -570,6 +573,9 @@
                                                                     </constraints>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" image="plus"/>
+                                                                    <connections>
+                                                                        <action selector="plusNum:" destination="H8k-qC-U4W" eventType="touchUpInside" id="vhh-Mg-uJb"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -594,6 +600,9 @@
                                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="baseBackgroundColor" name="grn"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="addOrder:" destination="H8k-qC-U4W" eventType="touchUpInside" id="P1d-FB-3Of"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -618,12 +627,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="飲料選項" id="HBM-gF-5Js"/>
                     <connections>
-                        <outlet property="addNumBtn" destination="mzG-oS-xFK" id="sqH-En-xEt"/>
-                        <outlet property="addToOrder" destination="jyg-xs-kz1" id="fMo-dO-Ma7"/>
                         <outlet property="caffineImage" destination="w8r-y7-B8O" id="UXg-SR-6fZ"/>
                         <outlet property="descriptionLabel" destination="W1i-fy-XKQ" id="frY-U2-huJ"/>
                         <outlet property="minusNumBtn" destination="RYL-cG-CUh" id="QY0-sT-Xx7"/>
-                        <outlet property="namelabel" destination="yYW-xx-14X" id="s52-Fn-uUL"/>
+                        <outlet property="namelabel" destination="7TZ-e0-imz" id="LC3-U7-96b"/>
                         <outlet property="orderNumLabel" destination="5Tx-Wc-V4X" id="zIJ-LW-ykJ"/>
                         <outlet property="priceLabel" destination="SlR-Sa-dSR" id="oAi-wx-8fs"/>
                         <outletCollection property="sugarBtn" destination="4EK-pj-aaV" collectionClass="NSMutableArray" id="2dS-pt-Zd4"/>

@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
     var thirdTabDrinks = [Item]()
     var fourthTabDrinks = [Item]()
     var tabNumber = 0
+    var orderByTabs = [[Item]]()
 
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet var segmentTabs: [UIButton]!
@@ -55,11 +56,18 @@ class MainViewController: UIViewController {
     
     @IBAction func tabSedgmentBtn(_ sender: UIButton) {
         if let num = segmentTabs.firstIndex(of: sender){
-            print(num)
             tabNumber = num
             customSegmentedControl.tabBtnUI(index: num, btns: segmentTabs, deviceWidth: view.bounds.width)
             menuCollectionView.reloadData()
         }
+    }
+    
+    @IBSegueAction func showDetail(_ coder: NSCoder) -> DetailTableViewController? {
+        let controller = DetailTableViewController(coder: coder)
+        if let indexPath = menuCollectionView.indexPathsForSelectedItems?.first{
+            controller?.drink = orderByTabs[tabNumber][indexPath.row].fields
+        }
+        return controller
     }
     
     func updateUI(){
@@ -71,8 +79,10 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
             self.drinks = drinks
             self.titles = Item.genres(drinks)
+            print(self.titles, "controller")
             self.customSegmentedControl.setTabTitles(titles: self.titles, btns: self.segmentTabs)
             self.menuCollectionView.reloadData()
+            self.orderByTabs = [self.firstTabDrinks, self.secondTabDrinks, self.thirdTabDrinks, self.fourthTabDrinks]
         }
     }
     
@@ -94,7 +104,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0 :
             return firstTabDrinks.count
         case 1 :
-            print(secondTabDrinks.count, "collection")
             return secondTabDrinks.count
         case 2:
             return thirdTabDrinks.count
@@ -108,11 +117,38 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "\(FirstTabCollectionViewCell.self)", for: indexPath) as! FirstTabCollectionViewCell
-        let drink = drinks[indexPath.row].fields
-        MenuController.shared.getImage(url: drink.image[0].url) { image in
-            DispatchQueue.main.async {
-                cell.drinkImage.image = image
+        
+        switch tabNumber {
+        case 0:
+            let drink = firstTabDrinks[indexPath.row].fields
+            MenuController.shared.getImage(url: drink.image[0].url) { image in
+                DispatchQueue.main.async {
+                    cell.drinkImage.image = image
+                }
             }
+        case 1:
+            let drink = secondTabDrinks[indexPath.row].fields
+            MenuController.shared.getImage(url: drink.image[0].url) { image in
+                DispatchQueue.main.async {
+                    cell.drinkImage.image = image
+                }
+            }
+        case 2:
+            let drink = thirdTabDrinks[indexPath.row].fields
+            MenuController.shared.getImage(url: drink.image[0].url) { image in
+                DispatchQueue.main.async {
+                    cell.drinkImage.image = image
+                }
+            }
+        case 3:
+            let drink = fourthTabDrinks[indexPath.row].fields
+            MenuController.shared.getImage(url: drink.image[0].url) { image in
+                DispatchQueue.main.async {
+                    cell.drinkImage.image = image
+                }
+            }
+        default:
+            break
         }
         return cell
     }

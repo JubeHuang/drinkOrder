@@ -8,12 +8,8 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
-    
-    var drink: Drink?
 
-    @IBOutlet weak var addToOrder: UIButton!
     @IBOutlet weak var minusNumBtn: UIButton!
-    @IBOutlet weak var addNumBtn: UIButton!
     @IBOutlet weak var orderNumLabel: UILabel!
     @IBOutlet var iceBtn: [UIButton]!
     @IBOutlet var sugarBtn: [UIButton]!
@@ -22,18 +18,16 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var namelabel: UILabel!
     
+    var drink: Drink?
     let formatter = NumberFormatter()
     var selectSugarIndex = 1
     var seletIceIndex = 1
+    var orderNum = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        updateUI()
     }
     
     @IBAction func selectSugar(_ sender: UIButton) {
@@ -58,14 +52,44 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func addOrder(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func plusNum(_ sender: Any) {
+        orderNum += 1
+        orderNumLabel.text = "\(orderNum)"
+        minusNumBtn.isEnabled = true
+    }
+    @IBAction func minusNum(_ sender: Any) {
+        if orderNum > 1 {
+            minusNumBtn.isEnabled = true
+            orderNum -= 1
+            orderNumLabel.text = "\(orderNum)"
+        }
+        if orderNum == 1 {
+            minusNumBtn.isEnabled = false
+        }
+    }
+    
     func updateUI(){
-        namelabel.text = drink?.name ?? ""
-        descriptionLabel.text = drink?.description ?? ""
+        if let name = drink?.name,
+           let description = drink?.description {
+            let attributedName = NSMutableAttributedString(string: name)
+            let attributedDescrip = NSMutableAttributedString(string: description)
+            attributedName.addAttribute(NSAttributedString.Key.kern, value: 2, range: NSMakeRange(0, name.count))
+            attributedDescrip.addAttribute(NSAttributedString.Key.kern, value: 4, range: NSMakeRange(0, description.count))
+            namelabel.attributedText = attributedName
+            descriptionLabel.attributedText = attributedDescrip
+        }
         formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 0
         priceLabel.text = formatter.string(from: NSNumber(value: drink?.price ?? 0))
         if let imageName = drink?.caffeine {
             caffineImage.image = UIImage(named: imageName)
         }
+        orderNumLabel.text = "\(orderNum)"
+        minusNumBtn.isEnabled = false
     }
 
     // MARK: - Table view data source

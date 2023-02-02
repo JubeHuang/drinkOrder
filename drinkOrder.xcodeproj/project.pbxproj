@@ -60,7 +60,6 @@
 		8D712AE8297159E6001A9E68 = {
 			isa = PBXGroup;
 			children = (
-				8D4E9F742980F3D500B92759 /* Sugar Ice Enum.swift */,
 				8D712AF3297159E6001A9E68 /* drinkOrder */,
 				8D712AF2297159E6001A9E68 /* Products */,
 			);
@@ -77,6 +76,7 @@
 		8D712AF3297159E6001A9E68 /* drinkOrder */ = {
 			isa = PBXGroup;
 			children = (
+				8D4E9F742980F3D500B92759 /* Sugar Ice Enum.swift */,
 				8D4E9F64297AECB600B92759 /* CustomSegmentedControl.swift */,
 				8D4E9F70297D027000B92759 /* Array Extension.swift */,
 				8D693BD32976819900C8503F /* NetworkError.swift */,
