@@ -9,6 +9,7 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
 
+    @IBOutlet weak var additionalBtn: UIButton!
     @IBOutlet weak var minusNumBtn: UIButton!
     @IBOutlet weak var orderNumLabel: UILabel!
     @IBOutlet var iceBtn: [UIButton]!
@@ -53,7 +54,7 @@ class DetailTableViewController: UITableViewController {
     }
     
     @IBAction func addOrder(_ sender: UIButton) {
-        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func plusNum(_ sender: Any) {

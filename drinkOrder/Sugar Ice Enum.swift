@@ -13,13 +13,6 @@ enum Sugar:String, CaseIterable {
     case ThreeSugar
     case FiveSugar
     case NormalSugar
-    
-//    func status(selectNum: Int) -> String {
-//        if selectNum != 1 {
-//            self.
-//        }
-//    }
-    
 }
 
 enum Ice:String, CaseIterable {

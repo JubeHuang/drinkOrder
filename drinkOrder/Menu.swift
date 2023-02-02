@@ -23,20 +23,6 @@ struct Item: Decodable {
         allGenre = allGenre.removeDuplicateElement()
         return allGenre
     }
-    
-//    static func getGenreDrink(drinks: [Item], _ genre: [String]) -> [[Item]] {
-//        var tabDrinks = [Item]()
-//        var allTabDrinks = [[Item]]()
-//        for (_, drink) in drinks.enumerated(){
-//            for i in 0..<genre.count {
-//                if drink.fields.genre == genre[i] {
-//                    tabDrinks.append(drink)
-//                }
-//            }
-//            allTabDrinks.append(tabDrinks)
-//        }
-//        return allTabDrinks
-//    }
 }
 
 struct Drink: Decodable {
@@ -50,4 +36,23 @@ struct Drink: Decodable {
 
 struct Image: Decodable {
     let url: URL
+}
+
+
+struct OrderPost: Codable {
+    let records: [List]
+}
+
+struct List: Codable {
+    let fields: DrinkDetail
+}
+
+struct DrinkDetail: Codable{
+    let name: String
+    let ice: String
+    let sugar: String
+    let orderer: String
+    let quantity: String
+    let price: Int
+    let orderTime: Date
 }

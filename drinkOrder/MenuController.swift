@@ -49,4 +49,30 @@ class MenuController {
             completion(.failure(.invalidUrl))
         }
     }
+    
+    func uploadOrder(list: OrderPost, completion: @escaping (Result<[List], NetworkError>) -> Void){
+        let newBaseUrl = baseUrl.appendingPathComponent("Order")
+        var urlReuest = URLRequest(url: newBaseUrl)
+        urlReuest.httpMethod = "POST"
+        urlReuest.setValue("keykB1FwRqtW0hzjg", forHTTPHeaderField: "api_key")
+        urlReuest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        urlReuest.httpBody = try? encoder.encode(list)
+        
+        URLSession.shared.dataTask(with: urlReuest) { data, urlresponse, error in
+            if let data {
+                do {
+                    let decoder = JSONDecoder()
+                    let orderResponse = try decoder.decode(OrderPost.self, from: data)
+                    let orderList = orderResponse.records
+                    completion(.success(orderList))
+                } catch {
+                    completion(.failure(.jsonDecodeFailed))
+                }
+            } else {
+                completion(.failure(.requestFailed))
+            }
+        }.resume()
+    }
 }

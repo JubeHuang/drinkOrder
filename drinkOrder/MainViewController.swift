@@ -21,8 +21,6 @@ class MainViewController: UIViewController {
                     secondTabDrinks.append(drink)
                 case titles[2]:
                     thirdTabDrinks.append(drink)
-                case titles[3]:
-                    fourthTabDrinks.append(drink)
                 default:
                     break
                 }
@@ -79,7 +77,6 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
             self.drinks = drinks
             self.titles = Item.genres(drinks)
-            print(self.titles, "controller")
             self.customSegmentedControl.setTabTitles(titles: self.titles, btns: self.segmentTabs)
             self.menuCollectionView.reloadData()
             self.orderByTabs = [self.firstTabDrinks, self.secondTabDrinks, self.thirdTabDrinks, self.fourthTabDrinks]
@@ -107,12 +104,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return secondTabDrinks.count
         case 2:
             return thirdTabDrinks.count
-        case 3:
-            return fourthTabDrinks.count
         default:
             return 0
         }
-        //return drinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -140,18 +134,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     cell.drinkImage.image = image
                 }
             }
-        case 3:
-            let drink = fourthTabDrinks[indexPath.row].fields
-            MenuController.shared.getImage(url: drink.image[0].url) { image in
-                DispatchQueue.main.async {
-                    cell.drinkImage.image = image
-                }
-            }
         default:
             break
         }
         return cell
     }
-    
-    
 }

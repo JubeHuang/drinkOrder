@@ -9,7 +9,6 @@ import UIKit
 
 class CustomSegmentedControl: UIView {
     
-    //var tabStrings = [String]()
     var selectorColor = UIColor(red: 56/255, green: 109/255, blue: 105/255, alpha: 1)
     var defaultColor = UIColor(red: 234/255, green: 165/255, blue: 36/255, alpha: 1)
     var selectorView: UIView!
