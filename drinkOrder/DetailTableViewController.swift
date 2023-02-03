@@ -20,10 +20,13 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var namelabel: UILabel!
     
     var drink: Drink?
+    var order: DrinkDetail?
+    var orderViewController: OrderViewController?
     let formatter = NumberFormatter()
     var selectSugarIndex = 1
     var seletIceIndex = 1
     var orderNum = 1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,10 @@ class DetailTableViewController: UITableViewController {
     }
     
     @IBAction func addOrder(_ sender: UIButton) {
+        let ice = Ice.allCases[seletIceIndex].rawValue
+        let sugar = Sugar.allCases[selectSugarIndex].rawValue
+        let totalPrice = orderNum * (drink?.price)!
+        order = DrinkDetail(name: namelabel.text!, ice: ice, sugar: sugar, quantity: orderNum, totalPrice: totalPrice, orderTime: Date.now)
         navigationController?.popViewController(animated: true)
     }
     
@@ -93,6 +100,7 @@ class DetailTableViewController: UITableViewController {
         minusNumBtn.isEnabled = false
     }
 
+    
     // MARK: - Table view data source
 
     

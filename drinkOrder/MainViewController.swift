@@ -33,7 +33,9 @@ class MainViewController: UIViewController {
     var fourthTabDrinks = [Item]()
     var tabNumber = 0
     var orderByTabs = [[Item]]()
+    var orders = [DrinkDetail]()
 
+    @IBOutlet weak var totalOrderNumLabel: UILabel!
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet var segmentTabs: [UIButton]!
     @IBOutlet weak var tabBtnStackView: UIStackView!
@@ -52,6 +54,10 @@ class MainViewController: UIViewController {
         updateUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        totalOrderNumLabel.text = "\(orders.count)"
+    }
+    
     @IBAction func tabSedgmentBtn(_ sender: UIButton) {
         if let num = segmentTabs.firstIndex(of: sender){
             tabNumber = num
@@ -68,6 +74,11 @@ class MainViewController: UIViewController {
         return controller
     }
     
+    @IBSegueAction func showOrderList(_ coder: NSCoder) -> OrderViewController? {
+        let controller = OrderViewController(coder: coder)
+        controller?.orders = orders
+        return controller
+    }
     func updateUI(){
         title = "八曜和茶"
         customSegmentedControl.drawSelectorView(btns: segmentTabs, deviceWidth: view.bounds.width, y: Int(tabBtnStackView.frame.height), view: tabBtnStackView)
