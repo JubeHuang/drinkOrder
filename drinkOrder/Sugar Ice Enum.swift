@@ -8,15 +8,20 @@
 import Foundation
 
 enum Sugar:String, CaseIterable {
-    case NoSugar
-    case OneSugar
-    case ThreeSugar
-    case FiveSugar
-    case NormalSugar
+    case NoSugar = "無糖"
+    case OneSugar = "一分糖"
+    case ThreeSugar = "三分糖"
+    case FiveSugar = "五分糖"
+    case NormalSugar = "正常糖"
 }
 
 enum Ice:String, CaseIterable {
-    case NoIce
-    case LittleIce
+    case NoIce = "去冰"
+    case LittleIce = "微冰"
+    case Hot = "熱"
 }
 
+enum Add: String, CaseIterable {
+    case AddPearl = "+ 白玉"
+    case None = ""
+}

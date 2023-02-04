@@ -54,4 +54,5 @@ struct DrinkDetail: Codable{
     let quantity: Int
     let totalPrice: Int
     let orderTime: Date
+    let additional: String
 }

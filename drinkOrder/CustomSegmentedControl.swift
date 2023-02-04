@@ -30,7 +30,6 @@ class CustomSegmentedControl: UIView {
         let selectorWidth = 24
         let center = (btnwidth - selectorWidth) / 2
         let selectorPosition = CGFloat(btnwidth * index + center)
-        print(selectorPosition)
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0) {
             self.selectorView.frame.origin.x = selectorPosition
         }

@@ -26,7 +26,7 @@ class DetailTableViewController: UITableViewController {
     var selectSugarIndex = 1
     var seletIceIndex = 1
     var orderNum = 1
-    
+    var selectAdd = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,9 @@ class DetailTableViewController: UITableViewController {
     @IBAction func selectSugar(_ sender: UIButton) {
         if let index = sugarBtn.firstIndex(of: sender){
             selectSugarIndex = index
-            let selectImage = UIImage(named: "select\(Sugar.allCases[index].rawValue)")
+            let selectImage = UIImage(named: "select\(Sugar.allCases[index])")
             for i in 0..<sugarBtn.count{
-                sugarBtn[i].setImage(UIImage(named: "unselect\(Sugar.allCases[i].rawValue)"), for: .normal)
+                sugarBtn[i].setImage(UIImage(named: "unselect\(Sugar.allCases[i])"), for: .normal)
             }
             sugarBtn[index].setImage(selectImage, for: .normal)
         }
@@ -48,19 +48,28 @@ class DetailTableViewController: UITableViewController {
     @IBAction func selectIce(_ sender: UIButton) {
         if let index = iceBtn.firstIndex(of: sender){
             seletIceIndex = index
-            let selectImage = UIImage(named: "select\(Ice.allCases[index].rawValue)")
+            let selectImage = UIImage(named: "select\(Ice.allCases[index])")
             for i in 0..<iceBtn.count{
-                iceBtn[i].setImage(UIImage(named: "unselect\(Ice.allCases[i].rawValue)"), for: .normal)
+                iceBtn[i].setImage(UIImage(named: "unselect\(Ice.allCases[i])"), for: .normal)
             }
             iceBtn[index].setImage(selectImage, for: .normal)
         }
+    }
+    
+    @IBAction func selectAdd(_ sender: UIButton) {
+        selectAdd = !selectAdd
+        let name = selectAdd ? "select\(Add.AddPearl)" : "unselect\(Add.AddPearl)"
+        sender.setImage(UIImage(named: name), for: .normal)
     }
     
     @IBAction func addOrder(_ sender: UIButton) {
         let ice = Ice.allCases[seletIceIndex].rawValue
         let sugar = Sugar.allCases[selectSugarIndex].rawValue
         let totalPrice = orderNum * (drink?.price)!
-        order = DrinkDetail(name: namelabel.text!, ice: ice, sugar: sugar, quantity: orderNum, totalPrice: totalPrice, orderTime: Date.now)
+        let additonal = selectAdd ? Add.AddPearl.rawValue : Add.None.rawValue
+        order = DrinkDetail(name: namelabel.text!, ice: ice, sugar: sugar, quantity: orderNum, totalPrice: totalPrice, orderTime: Date.now, additional: additonal)
+        let name = Notification.Name("orderUpdateNotification")
+        NotificationCenter.default.post(name: name, object: nil, userInfo: ["order" : order!])
         navigationController?.popViewController(animated: true)
     }
     

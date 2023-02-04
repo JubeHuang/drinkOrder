@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "unselectFiveSugar.png",
+      "filename" : "unselectAddPearl.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "unselectFiveSugar@2x.png",
+      "filename" : "unselectAddPearl@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "unselectFiveSugar@3x.png",
+      "filename" : "unselectAddPearl@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -52,10 +52,18 @@ class MainViewController: UIViewController {
             }
         }
         updateUI()
+        let name = Notification.Name("orderUpdateNotification")
+        let nameOrders = Notification.Name("ordersUpdateNotification")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToNoti(noti:)), name: name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToOrdersNoti(noti:)), name: nameOrders, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        totalOrderNumLabel.text = "\(orders.count)"
+        var orderNumber = 0
+        for order in orders {
+            orderNumber += order.quantity
+        }
+        totalOrderNumLabel.text = "\(orderNumber)"
     }
     
     @IBAction func tabSedgmentBtn(_ sender: UIButton) {
@@ -79,6 +87,21 @@ class MainViewController: UIViewController {
         controller?.orders = orders
         return controller
     }
+    
+    @objc func updateToNoti(noti:Notification){
+        if let userInfo = noti.userInfo,
+           let order =  userInfo["order"] as? DrinkDetail {
+            orders.append(order)
+        }
+    }
+    
+    @objc func updateToOrdersNoti(noti:Notification){
+        if let userInfo = noti.userInfo,
+           let newOrders =  userInfo["orders"] as? [DrinkDetail] {
+            orders = newOrders
+        }
+    }
+    
     func updateUI(){
         title = "八曜和茶"
         customSegmentedControl.drawSelectorView(btns: segmentTabs, deviceWidth: view.bounds.width, y: Int(tabBtnStackView.frame.height), view: tabBtnStackView)

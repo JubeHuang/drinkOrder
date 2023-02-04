@@ -51,15 +51,16 @@ class MenuController {
     }
     
     func uploadOrder(list: OrderPost, completion: @escaping (Result<[List], NetworkError>) -> Void){
+        
         let newBaseUrl = baseUrl.appendingPathComponent("Order")
         var urlReuest = URLRequest(url: newBaseUrl)
         urlReuest.httpMethod = "POST"
-        urlReuest.setValue("keykB1FwRqtW0hzjg", forHTTPHeaderField: "api_key")
+        urlReuest.setValue("Bearer keykB1FwRqtW0hzjg", forHTTPHeaderField: "Authorization")
         urlReuest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
         urlReuest.httpBody = try? encoder.encode(list)
-        
+
         URLSession.shared.dataTask(with: urlReuest) { data, urlresponse, error in
             if let data {
                 do {
