@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol OrderTableViewCellDelegate: AnyObject {
-    func orderTableViewCellDelegate(_ controller: OrderTableViewCell, didSelect orderNum: Int, editNumTextfield: UITextField)
-}
-
 class OrderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var editNumTextfield: UITextField!
@@ -20,8 +16,6 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var orderNameLabel: UILabel!
     @IBOutlet weak var orderNumLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
-    
-    weak var delegate: OrderTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,10 +27,6 @@ class OrderTableViewCell: UITableViewCell {
         bgView.layer.shadowOffset = .zero
         bgView.layer.shadowRadius = 3
         bgView.layer.shadowOpacity = 0.1
-        if let orderNumStr = orderNumLabel.text?.removeLast().description {
-            let orderNum = Int(orderNumStr) ?? 0
-            delegate?.orderTableViewCellDelegate(self, didSelect: orderNum, editNumTextfield: editNumTextfield)
-        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

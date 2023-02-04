@@ -216,8 +216,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單內容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJA-5Z-A3X">
-                                <rect key="frame" x="146.66666666666666" y="59" width="81.666666666666657" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="155" y="67" width="65.333333333333314" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -294,7 +294,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="o0O-tK-34r">
-                                <rect key="frame" x="0.0" y="107" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="98.333333333333314" width="375" height="531.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="89" id="xM4-JV-Kvb" customClass="OrderTableViewCell" customModule="drinkOrder" customModuleProvider="target">
@@ -319,9 +319,6 @@
                                                                             <fontDescription key="fontDescription" name="NotoSansCJKtc-Black" family="Noto Sans CJK TC" pointSize="16"/>
                                                                             <color key="textColor" red="1" green="0.97647058819999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
-                                                                            <connections>
-                                                                                <outletCollection property="gestureRecognizers" destination="ycp-gA-EXX" appends="YES" id="8lJ-dE-gjg"/>
-                                                                            </connections>
                                                                         </label>
                                                                         <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-r5-aTH">
                                                                             <rect key="frame" x="0.0" y="5" width="44" height="34"/>
@@ -329,6 +326,15 @@
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <textInputTraits key="textInputTraits"/>
                                                                         </textField>
+                                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iap-iy-abV">
+                                                                            <rect key="frame" x="0.0" y="4" width="44" height="35"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <state key="normal" title="Button"/>
+                                                                            <buttonConfiguration key="configuration" style="plain"/>
+                                                                            <connections>
+                                                                                <action selector="showPicker:" destination="Zdm-Hg-PZP" eventType="touchUpInside" id="9kA-Ir-oRE"/>
+                                                                            </connections>
+                                                                        </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" name="grn"/>
                                                                     <constraints>
@@ -430,8 +436,8 @@
                         <constraints>
                             <constraint firstItem="Qee-im-TGD" firstAttribute="top" secondItem="o0O-tK-34r" secondAttribute="bottom" id="54K-aB-r7t"/>
                             <constraint firstItem="MJA-5Z-A3X" firstAttribute="centerX" secondItem="QJZ-C2-ja0" secondAttribute="centerX" id="5Zf-l0-0Bv"/>
-                            <constraint firstItem="MJA-5Z-A3X" firstAttribute="top" secondItem="0Fh-Vl-KsO" secondAttribute="top" constant="12" id="98c-TY-WdH"/>
-                            <constraint firstItem="o0O-tK-34r" firstAttribute="top" secondItem="MJA-5Z-A3X" secondAttribute="bottom" constant="24" id="DHr-lk-1oW"/>
+                            <constraint firstItem="MJA-5Z-A3X" firstAttribute="top" secondItem="0Fh-Vl-KsO" secondAttribute="top" constant="20" id="98c-TY-WdH"/>
+                            <constraint firstItem="o0O-tK-34r" firstAttribute="top" secondItem="MJA-5Z-A3X" secondAttribute="bottom" constant="12" id="DHr-lk-1oW"/>
                             <constraint firstItem="0Fh-Vl-KsO" firstAttribute="trailing" secondItem="o0O-tK-34r" secondAttribute="trailing" id="MCK-33-f1H"/>
                             <constraint firstItem="o0O-tK-34r" firstAttribute="leading" secondItem="0Fh-Vl-KsO" secondAttribute="leading" id="gs1-Jw-SyM"/>
                             <constraint firstItem="o0O-tK-34r" firstAttribute="bottom" secondItem="0Fh-Vl-KsO" secondAttribute="bottom" constant="-120" id="kOb-d7-CfW"/>
@@ -449,6 +455,7 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="3ZV-cp-Orb">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <gestureRecognizers/>
                     <items>
                         <barButtonItem title="取消" id="PDQ-1z-btH">
                             <color key="tintColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -473,13 +480,9 @@
                         <outlet property="delegate" destination="Zdm-Hg-PZP" id="m12-PM-tm8"/>
                     </connections>
                 </pickerView>
-                <tapGestureRecognizer id="ycp-gA-EXX">
-                    <connections>
-                        <action selector="showPicker:" destination="Zdm-Hg-PZP" id="oBq-Jk-vsQ"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ycp-gA-EXX"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="894"/>
+            <point key="canvasLocation" x="1788" y="893.3497536945813"/>
         </scene>
         <!--飲料選項-->
         <scene sceneID="ufi-qF-Kjf">
