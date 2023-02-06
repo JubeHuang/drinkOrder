@@ -50,8 +50,7 @@ class MenuController {
         }
     }
     
-    func uploadOrder(list: OrderPost, completion: @escaping (Result<[List], NetworkError>) -> Void){
-        
+    func uploadOrder(list: OrderPost, completion: @escaping (Result<[ListResponse], NetworkError>) -> Void){
         let newBaseUrl = baseUrl.appendingPathComponent("Order")
         var urlReuest = URLRequest(url: newBaseUrl)
         urlReuest.httpMethod = "POST"
@@ -60,12 +59,12 @@ class MenuController {
         
         let encoder = JSONEncoder()
         urlReuest.httpBody = try? encoder.encode(list)
-
+        
         URLSession.shared.dataTask(with: urlReuest) { data, urlresponse, error in
             if let data {
                 do {
                     let decoder = JSONDecoder()
-                    let orderResponse = try decoder.decode(OrderPost.self, from: data)
+                    let orderResponse = try decoder.decode(OrderResponse.self, from: data)
                     let orderList = orderResponse.records
                     completion(.success(orderList))
                 } catch {

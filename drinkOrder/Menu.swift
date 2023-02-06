@@ -56,3 +56,21 @@ struct DrinkDetail: Codable{
     let orderTime: Date
     let additional: String
 }
+
+struct OrderResponse: Decodable {
+    let records: [ListResponse]
+}
+
+struct ListResponse: Decodable {
+    let fields: DrinkResponse
+}
+
+struct DrinkResponse: Decodable {
+    let name: String
+    let ice: String
+    let sugar: String
+    let quantity: Int
+    let totalPrice: Int
+    let orderTime: String
+    let additional: String?
+}

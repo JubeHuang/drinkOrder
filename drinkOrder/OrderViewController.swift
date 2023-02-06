@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol OrderViewControllerDelegate {
+    func orderViewControllerDelegate(_ controller: OrderViewController, didSelect orders: [DrinkDetail])
+}
+
 class OrderViewController: UIViewController {
 
-    
+    @IBOutlet weak var nameTextfield: UITextField!
+    @IBOutlet weak var totalBgView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalMoneyLabel: UILabel!
     @IBOutlet var numberToolBar: UIToolbar!
@@ -18,10 +23,11 @@ class OrderViewController: UIViewController {
     let orderNumbers = Array(1...10)
     var orders = [DrinkDetail]()
     var orderPost: OrderPost?
-    var lists = [List]()
+    var lists = [ListResponse]()
     var currentCellPath: IndexPath?
     weak var currentCellSelected: OrderTableViewCell?
     var selectPickerNum: Int?
+    var delegate: OrderViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,24 +64,23 @@ class OrderViewController: UIViewController {
         let newAddPrice = selectPickerNum * 10
         orders[row] = editOrder
         currentCellSelected?.orderNumLabel.text = "\(selectPickerNum)杯"
-        currentCellSelected?.orderPriceLabel.text = "\(newTotalPrice)"
+        currentCellSelected?.orderPriceLabel.text = "$\(newTotalPrice)"
         currentCellSelected?.addPriceLabel.text = "+ $\(newAddPrice)"
         let sum = sumMoney(orders: orders)
         totalMoneyLabel.text = "$ \(sum)"
-        let name = Notification.Name("ordersUpdateNotification")
-        NotificationCenter.default.post(name: name, object: nil, userInfo: ["orders": orders])
+        delegate?.orderViewControllerDelegate(self, didSelect: orders)
         view.endEditing(true)
     }
     @IBAction func cancelPicker(_ sender: Any) {
         view.endEditing(true)
     }
     @IBAction func submitOrder(_ sender: Any) {
+        var lists = [List]()
         for order in orders {
-            var lists = [List]()
             let list = List(fields: order)
             lists.append(list)
-            orderPost = OrderPost(records: lists)
         }
+        orderPost = OrderPost(records: lists)
         guard let order = orderPost else { return }
         MenuController.shared.uploadOrder(list: order) { result in
             switch result{
@@ -89,7 +94,6 @@ class OrderViewController: UIViewController {
                 print(error)
             }
         }
-        dismiss(animated: true)
     }
     
     func bringUpPickerViewWithRow(indexPath: IndexPath) {
@@ -154,8 +158,10 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         currentCellPath = indexPath
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        <#code#>
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        orders.remove(at: indexPath.row)
+        orderTableView.deleteRows(at: [indexPath], with: .automatic)
+        totalMoneyLabel.text = "$ \(sumMoney(orders: orders))"
     }
 }
 

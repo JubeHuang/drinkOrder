@@ -53,9 +53,7 @@ class MainViewController: UIViewController {
         }
         updateUI()
         let name = Notification.Name("orderUpdateNotification")
-        let nameOrders = Notification.Name("ordersUpdateNotification")
         NotificationCenter.default.addObserver(self, selector: #selector(updateToNoti(noti:)), name: name, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateToOrdersNoti(noti:)), name: nameOrders, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +83,7 @@ class MainViewController: UIViewController {
     @IBSegueAction func showOrderList(_ coder: NSCoder) -> OrderViewController? {
         let controller = OrderViewController(coder: coder)
         controller?.orders = orders
+        controller?.delegate = self
         return controller
     }
     
@@ -92,13 +91,6 @@ class MainViewController: UIViewController {
         if let userInfo = noti.userInfo,
            let order =  userInfo["order"] as? DrinkDetail {
             orders.append(order)
-        }
-    }
-    
-    @objc func updateToOrdersNoti(noti:Notification){
-        if let userInfo = noti.userInfo,
-           let newOrders =  userInfo["orders"] as? [DrinkDetail] {
-            orders = newOrders
         }
     }
     
@@ -172,5 +164,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             break
         }
         return cell
+    }
+}
+
+extension MainViewController: OrderViewControllerDelegate {
+    func orderViewControllerDelegate(_ controller: OrderViewController, didSelect orders: [DrinkDetail]) {
+        self.orders = orders
+        var orderNumber = 0
+        for order in orders {
+            orderNumber += order.quantity
+        }
+        print(orderNumber,"delegate")
+        totalOrderNumLabel.text = "\(orderNumber)"
     }
 }
