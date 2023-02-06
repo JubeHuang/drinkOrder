@@ -14,7 +14,6 @@ protocol OrderViewControllerDelegate {
 class OrderViewController: UIViewController {
 
     @IBOutlet weak var nameTextfield: UITextField!
-    @IBOutlet weak var totalBgView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalMoneyLabel: UILabel!
     @IBOutlet var numberToolBar: UIToolbar!
