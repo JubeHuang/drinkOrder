@@ -21,7 +21,6 @@ class DetailTableViewController: UITableViewController {
     
     var drink: Drink?
     var order: DrinkDetail?
-    var orderViewController: OrderViewController?
     let formatter = NumberFormatter()
     var selectSugarIndex = 1
     var seletIceIndex = 1
@@ -67,7 +66,10 @@ class DetailTableViewController: UITableViewController {
         let sugar = Sugar.allCases[selectSugarIndex].rawValue
         let totalPrice = orderNum * (drink?.price)!
         let additonal = selectAdd ? Add.AddPearl.rawValue : Add.None.rawValue
-        order = DrinkDetail(name: namelabel.text!, ice: ice, sugar: sugar, quantity: orderNum, totalPrice: totalPrice, orderTime: Date.now, additional: additonal)
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions.insert(.withFractionalSeconds)
+        let orderTimeStr = formatter.string(from: Date.now)
+        order = DrinkDetail(name: namelabel.text!, ice: ice, sugar: sugar, quantity: orderNum, totalPrice: totalPrice, orderTime: orderTimeStr, additional: additonal, orderer: "")
         let name = Notification.Name("orderUpdateNotification")
         NotificationCenter.default.post(name: name, object: nil, userInfo: ["order" : order!])
         navigationController?.popViewController(animated: true)

@@ -174,7 +174,6 @@ extension MainViewController: OrderViewControllerDelegate {
         for order in orders {
             orderNumber += order.quantity
         }
-        print(orderNumber,"delegate")
         totalOrderNumLabel.text = "\(orderNumber)"
     }
 }

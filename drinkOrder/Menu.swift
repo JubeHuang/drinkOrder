@@ -53,8 +53,9 @@ struct DrinkDetail: Codable{
     let sugar: String
     let quantity: Int
     let totalPrice: Int
-    let orderTime: Date
+    let orderTime: String
     let additional: String
+    let orderer: String
 }
 
 struct OrderResponse: Decodable {
@@ -73,4 +74,5 @@ struct DrinkResponse: Decodable {
     let totalPrice: Int
     let orderTime: String
     let additional: String?
+    let orderer: String?
 }
