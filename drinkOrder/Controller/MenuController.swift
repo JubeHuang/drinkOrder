@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-//UIImage(data: data)
+
 class MenuController {
     static let shared = MenuController()
     
