@@ -23,8 +23,6 @@
 		8D712B0929715A03001A9E68 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D712B0829715A03001A9E68 /* Menu.swift */; };
 		8D712B0B29726BB6001A9E68 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D712B0A29726BB6001A9E68 /* MenuController.swift */; };
 		8D712B0D2972B903001A9E68 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D712B0C2972B903001A9E68 /* MainViewController.swift */; };
-		8DF91FE7298BDBDC002F0DF3 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF91FE6298BDBDC002F0DF3 /* LoadingView.xib */; };
-		8DF91FE9298BDCA6002F0DF3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF91FE8298BDCA6002F0DF3 /* LoadingView.swift */; };
 		8DF91FF3298CBD33002F0DF3 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF91FF2298CBD33002F0DF3 /* OrderViewController.swift */; };
 		8DF91FF5298CBDD4002F0DF3 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF91FF4298CBDD4002F0DF3 /* OrderTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -48,8 +46,6 @@
 		8D712B0829715A03001A9E68 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		8D712B0A29726BB6001A9E68 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		8D712B0C2972B903001A9E68 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		8DF91FE6298BDBDC002F0DF3 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		8DF91FE8298BDCA6002F0DF3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8DF91FF2298CBD33002F0DF3 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		8DF91FF4298CBDD4002F0DF3 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +84,6 @@
 				8D712B0C2972B903001A9E68 /* MainViewController.swift */,
 				8DF91FF2298CBD33002F0DF3 /* OrderViewController.swift */,
 				8D712B0A29726BB6001A9E68 /* MenuController.swift */,
-				8DF91FE8298BDCA6002F0DF3 /* LoadingView.swift */,
 				8D4E9F68297CEFEF00B92759 /* FirstTabCollectionViewCell.swift */,
 				8D4E9F742980F3D500B92759 /* Sugar Ice Enum.swift */,
 				8D712B0829715A03001A9E68 /* Menu.swift */,
@@ -99,7 +94,6 @@
 				8D712AF6297159E6001A9E68 /* SceneDelegate.swift */,
 				8D712AFA297159E6001A9E68 /* Main.storyboard */,
 				8DF91FF4298CBDD4002F0DF3 /* OrderTableViewCell.swift */,
-				8DF91FE6298BDBDC002F0DF3 /* LoadingView.xib */,
 				8D712AFF297159E7001A9E68 /* LaunchScreen.storyboard */,
 				8D712AFD297159E7001A9E68 /* Assets.xcassets */,
 				8D712B02297159E7001A9E68 /* Info.plist */,
@@ -170,7 +164,6 @@
 				8D712B01297159E7001A9E68 /* LaunchScreen.storyboard in Resources */,
 				8D712AFE297159E7001A9E68 /* Assets.xcassets in Resources */,
 				8D712AFC297159E6001A9E68 /* Main.storyboard in Resources */,
-				8DF91FE7298BDBDC002F0DF3 /* LoadingView.xib in Resources */,
 				8D4E9F6B297CF1C600B92759 /* NotoSansCJKtc-Regular.otf in Resources */,
 				8D4E9F6F297CF1F800B92759 /* NotoSansCJKtc-Black.otf in Resources */,
 			);
@@ -189,7 +182,6 @@
 				8D712AF5297159E6001A9E68 /* AppDelegate.swift in Sources */,
 				8D4E9F69297CEFEF00B92759 /* FirstTabCollectionViewCell.swift in Sources */,
 				8D712B0929715A03001A9E68 /* Menu.swift in Sources */,
-				8DF91FE9298BDCA6002F0DF3 /* LoadingView.swift in Sources */,
 				8D712AF7297159E6001A9E68 /* SceneDelegate.swift in Sources */,
 				8D693BD42976819900C8503F /* NetworkError.swift in Sources */,
 				8D4E9F73297D60E800B92759 /* DetailTableViewController.swift in Sources */,

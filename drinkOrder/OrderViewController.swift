@@ -95,7 +95,7 @@ class OrderViewController: UIViewController {
     @IBAction func submitOrder(_ sender: Any) {
         var lists = [List]()
         if nameTextfield.text == "" {
-            canNotUploadAlert(title: "Oops還不能送出噢！", message: "請填寫訂購人名稱")
+            showAlert(title: "Oops還不能送出噢！", message: "請填寫訂購人名稱")
         } else {
             for order in orders {
                 let list = List(fields: order)
@@ -109,6 +109,8 @@ class OrderViewController: UIViewController {
                     DispatchQueue.main.async {
                         print(lists)
                         self.lists = lists
+                        self.orders.removeAll()
+                        self.delegate?.orderViewControllerDelegate(self, didSelect: self.orders)
                         self.dismiss(animated: true)
                     }
                 case .failure(let error):
@@ -176,7 +178,7 @@ class OrderViewController: UIViewController {
         bottomView.transform = CGAffineTransform(translationX: 0, y: 0)
     }
     
-    func canNotUploadAlert(title: String, message: String){
+    func showAlert(title: String, message: String){
         let alertC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel)
         alertC.addAction(action)

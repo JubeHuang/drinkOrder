@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
     var orderByTabs = [[Item]]()
     var orders = [DrinkDetail]()
 
+    @IBOutlet weak var bannerScrollView: UIScrollView!
+    @IBOutlet weak var bannerPageControl: UIPageControl!
     @IBOutlet weak var totalOrderNumLabel: UILabel!
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet var segmentTabs: [UIButton]!
@@ -70,6 +72,12 @@ class MainViewController: UIViewController {
             customSegmentedControl.tabBtnUI(index: num, btns: segmentTabs, deviceWidth: view.bounds.width)
             menuCollectionView.reloadData()
         }
+    }
+    
+    @IBAction func changePageControl(_ sender: UIPageControl) {
+        let xPosition = CGFloat(sender.currentPage) * bannerScrollView.bounds.width
+        let point = CGPoint(x: xPosition, y: 0.0)
+        bannerScrollView.setContentOffset(point, animated: true)
     }
     
     @IBSegueAction func showDetail(_ coder: NSCoder) -> DetailTableViewController? {
@@ -137,7 +145,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "\(FirstTabCollectionViewCell.self)", for: indexPath) as! FirstTabCollectionViewCell
-        
+        cell.drinkImage.image = UIImage(named: "placeHolder")
         switch tabNumber {
         case 0:
             let drink = firstTabDrinks[indexPath.row].fields
@@ -175,5 +183,12 @@ extension MainViewController: OrderViewControllerDelegate {
             orderNumber += order.quantity
         }
         totalOrderNumLabel.text = "\(orderNumber)"
+    }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let page = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+        bannerPageControl.currentPage = page
     }
 }

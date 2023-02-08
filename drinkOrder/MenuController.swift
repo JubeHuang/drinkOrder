@@ -7,16 +7,23 @@
 
 import Foundation
 import UIKit
-
+//UIImage(data: data)
 class MenuController {
     static let shared = MenuController()
     
-    let baseUrl = URL(string: "https://api.airtable.com/v0/appuy55yM1UdN89al")!
+    let baseUrl = URL(string: "https://api.airtable.com/v0/appdWBgA90KG0CsDY")!
+    //暫存圖片
+    var imageCache = NSCache<NSURL, UIImage>()
     
     func getImage(url: URL?, completion: @escaping (UIImage?)->Void) {
         if let imageUrl = url {
+            if let imageCached = imageCache.object(forKey: imageUrl as NSURL) {
+                completion(imageCached)
+                return
+            }
             URLSession.shared.dataTask(with: imageUrl) { data, urLResponse, error in
-                if let data, let image = UIImage(data: data){
+                if let data, let image = UIImage(data: data) {
+                    self.imageCache.setObject(image, forKey: imageUrl as NSURL)
                     completion(image)
                 }else {
                     completion(nil)
@@ -30,7 +37,7 @@ class MenuController {
         var component = URLComponents(url: newBaseUrl, resolvingAgainstBaseURL: true)
         component?.queryItems = [URLQueryItem(name: "sort[][field]", value: "genre"),
                                  URLQueryItem(name: "sort[][direction]", value: "asc"),
-                                 URLQueryItem(name: "api_key", value: "keykB1FwRqtW0hzjg")]
+                                 URLQueryItem(name: "api_key", value: "keygO9mRKCJniMkNL")]
         if let url = component?.url{
             URLSession.shared.dataTask(with: url) { data, urLResponse, error in
                 if let data {
@@ -54,7 +61,7 @@ class MenuController {
         let newBaseUrl = baseUrl.appendingPathComponent("Order")
         var urlReuest = URLRequest(url: newBaseUrl)
         urlReuest.httpMethod = "POST"
-        urlReuest.setValue("Bearer keykB1FwRqtW0hzjg", forHTTPHeaderField: "Authorization")
+        urlReuest.setValue("Bearer keygO9mRKCJniMkNL", forHTTPHeaderField: "Authorization")
         urlReuest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()

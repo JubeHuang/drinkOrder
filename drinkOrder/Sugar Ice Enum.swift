@@ -9,9 +9,9 @@ import Foundation
 
 enum Sugar:String, CaseIterable {
     case NoSugar = "無糖"
-    case OneSugar = "一分糖"
-    case ThreeSugar = "三分糖"
-    case FiveSugar = "五分糖"
+    case OneSugar = "一度糖"
+    case ThreeSugar = "三度糖"
+    case FiveSugar = "五度糖"
     case NormalSugar = "正常糖"
 }
 

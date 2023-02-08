@@ -21,7 +21,6 @@ class DetailTableViewController: UITableViewController {
     
     var drink: Drink?
     var order: DrinkDetail?
-    let formatter = NumberFormatter()
     var selectSugarIndex = 1
     var seletIceIndex = 1
     var orderNum = 1
@@ -101,6 +100,7 @@ class DetailTableViewController: UITableViewController {
             namelabel.attributedText = attributedName
             descriptionLabel.attributedText = attributedDescrip
         }
+        let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 0
         priceLabel.text = formatter.string(from: NSNumber(value: drink?.price ?? 0))
