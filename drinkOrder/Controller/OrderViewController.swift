@@ -103,7 +103,8 @@ class OrderViewController: UIViewController {
             }
             orderPost = OrderPost(records: lists)
             guard let order = orderPost else { return }
-            MenuController.shared.uploadOrder(list: order) { result in
+            MenuController.shared.uploadOrder(list: order) {[weak self] result in
+                guard let self = self else { return }
                 switch result{
                 case .success(let lists):
                     DispatchQueue.main.async {
