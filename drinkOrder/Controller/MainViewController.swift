@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class MainViewController: UIViewController {
 
@@ -45,6 +46,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presentLoading()
         MenuController.shared.fetchMenu { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -110,11 +112,13 @@ class MainViewController: UIViewController {
     
     func updateTabUI(drinks: [Item]) {
         DispatchQueue.main.async {
+            //self.presentLoading()
             self.drinks = drinks
             self.titles = Item.genres(drinks)
             self.customSegmentedControl.setTabTitles(titles: self.titles, btns: self.segmentTabs)
             self.menuCollectionView.reloadData()
             self.orderByTabs = [self.firstTabDrinks, self.secondTabDrinks, self.thirdTabDrinks, self.fourthTabDrinks]
+            self.dismissLoading()
         }
     }
     
