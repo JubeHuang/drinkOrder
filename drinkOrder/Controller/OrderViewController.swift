@@ -93,6 +93,7 @@ class OrderViewController: UIViewController {
         view.endEditing(true)
     }
     @IBAction func submitOrder(_ sender: Any) {
+        presentLoading()
         var lists = [List]()
         if nameTextfield.text == "" {
             showAlert(title: "Oops還不能送出噢！", message: "請填寫訂購人名稱")
@@ -103,14 +104,17 @@ class OrderViewController: UIViewController {
             }
             orderPost = OrderPost(records: lists)
             guard let order = orderPost else { return }
-            MenuController.shared.uploadOrder(list: order) { result in
+            MenuController.shared.uploadOrder(list: order) {[weak self] result in
+                guard let self = self else { return }
                 switch result{
                 case .success(let lists):
+    
                     DispatchQueue.main.async {
                         print(lists)
                         self.lists = lists
                         self.orders.removeAll()
                         self.delegate?.orderViewControllerDelegate(self, didSelect: self.orders)
+                        self.dismissLoading()
                         self.dismiss(animated: true)
                     }
                 case .failure(let error):

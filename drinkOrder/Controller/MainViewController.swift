@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class MainViewController: UIViewController {
 
@@ -45,7 +46,9 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MenuController.shared.fetchMenu { result in
+        presentLoading()
+        MenuController.shared.fetchMenu { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let drinks):
                 self.updateTabUI(drinks: drinks)
@@ -109,11 +112,13 @@ class MainViewController: UIViewController {
     
     func updateTabUI(drinks: [Item]) {
         DispatchQueue.main.async {
+            //self.presentLoading()
             self.drinks = drinks
             self.titles = Item.genres(drinks)
             self.customSegmentedControl.setTabTitles(titles: self.titles, btns: self.segmentTabs)
             self.menuCollectionView.reloadData()
             self.orderByTabs = [self.firstTabDrinks, self.secondTabDrinks, self.thirdTabDrinks, self.fourthTabDrinks]
+            self.dismissLoading()
         }
     }
     
@@ -146,30 +151,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "\(FirstTabCollectionViewCell.self)", for: indexPath) as! FirstTabCollectionViewCell
         cell.drinkImage.image = UIImage(named: "placeHolder")
+        var drink: Drink?
         switch tabNumber {
         case 0:
-            let drink = firstTabDrinks[indexPath.row].fields
-            MenuController.shared.getImage(url: drink.image[0].url) { image in
-                DispatchQueue.main.async {
-                    cell.drinkImage.image = image
-                }
-            }
+            drink = firstTabDrinks[indexPath.row].fields
         case 1:
-            let drink = secondTabDrinks[indexPath.row].fields
-            MenuController.shared.getImage(url: drink.image[0].url) { image in
-                DispatchQueue.main.async {
-                    cell.drinkImage.image = image
-                }
-            }
+            drink = secondTabDrinks[indexPath.row].fields
         case 2:
-            let drink = thirdTabDrinks[indexPath.row].fields
-            MenuController.shared.getImage(url: drink.image[0].url) { image in
-                DispatchQueue.main.async {
-                    cell.drinkImage.image = image
-                }
-            }
+            drink = thirdTabDrinks[indexPath.row].fields
         default:
             break
+        }
+        if let drink = drink {
+            MenuController.shared.getImage(url: drink.image[0].url) { image in
+                DispatchQueue.main.async {
+                    cell.drinkImage.image = image
+                }
+            }
         }
         return cell
     }
