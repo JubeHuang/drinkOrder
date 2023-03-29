@@ -108,7 +108,6 @@ class OrderViewController: UIViewController {
                 guard let self = self else { return }
                 switch result{
                 case .success(let lists):
-    
                     DispatchQueue.main.async {
                         print(lists)
                         self.lists = lists

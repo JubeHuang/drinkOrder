@@ -35,22 +35,22 @@ class DetailTableViewController: UITableViewController {
     @IBAction func selectSugar(_ sender: UIButton) {
         if let index = sugarBtn.firstIndex(of: sender){
             selectSugarIndex = index
-            let selectImage = UIImage(named: "select\(Sugar.allCases[index])")
-            for i in 0..<sugarBtn.count{
-                sugarBtn[i].setImage(UIImage(named: "unselect\(Sugar.allCases[i])"), for: .normal)
+            sugarBtn.forEach { button in
+                let buttonIndex = sugarBtn.firstIndex(of: button)!
+                let imageName = buttonIndex == index ? "select\(Sugar.allCases[index])" : "unselect\(Sugar.allCases[buttonIndex])"
+                button.setImage(UIImage(named: imageName), for: .normal)
             }
-            sugarBtn[index].setImage(selectImage, for: .normal)
         }
     }
     
     @IBAction func selectIce(_ sender: UIButton) {
         if let index = iceBtn.firstIndex(of: sender){
             seletIceIndex = index
-            let selectImage = UIImage(named: "select\(Ice.allCases[index])")
-            for i in 0..<iceBtn.count{
-                iceBtn[i].setImage(UIImage(named: "unselect\(Ice.allCases[i])"), for: .normal)
+            iceBtn.forEach { button in
+                let buttonIndex = iceBtn.firstIndex(of: button)!
+                let imageName = buttonIndex == index ? "select\(Ice.allCases[index])" : "unselect\(Ice.allCases[buttonIndex])"
+                button.setImage(UIImage(named: imageName), for: .normal)
             }
-            iceBtn[index].setImage(selectImage, for: .normal)
         }
     }
     
@@ -80,13 +80,10 @@ class DetailTableViewController: UITableViewController {
         minusNumBtn.isEnabled = true
     }
     @IBAction func minusNum(_ sender: Any) {
+        minusNumBtn.isEnabled = orderNum > 1
         if orderNum > 1 {
-            minusNumBtn.isEnabled = true
             orderNum -= 1
             orderNumLabel.text = "\(orderNum)"
-        }
-        if orderNum == 1 {
-            minusNumBtn.isEnabled = false
         }
     }
     
