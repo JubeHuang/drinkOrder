@@ -559,7 +559,6 @@
                         <outlet property="delegate" destination="Zdm-Hg-PZP" id="m12-PM-tm8"/>
                     </connections>
                 </pickerView>
-                <tapGestureRecognizer id="ycp-gA-EXX"/>
             </objects>
             <point key="canvasLocation" x="956" y="822"/>
         </scene>
@@ -713,16 +712,16 @@
                                                     <rect key="frame" x="16" y="24" width="343" height="19.333333333333329"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xSL-67-Fxd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="8" height="19.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="40.666666666666664" height="19.333333333333332"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="甜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGh-Jc-Ta1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="19.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="16.333333333333332" height="19.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVe-YN-oug">
-                                                                    <rect key="frame" x="8" y="0.0" width="0.0" height="19.333333333333332"/>
+                                                                    <rect key="frame" x="24.333333333333336" y="0.0" width="16.333333333333336" height="19.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -733,7 +732,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WN6-y7-w05">
-                                                            <rect key="frame" x="40" y="9.3333333333333357" width="303" height="1"/>
+                                                            <rect key="frame" x="72.666666666666657" y="9.3333333333333357" width="270.33333333333337" height="1"/>
                                                             <color key="backgroundColor" red="0.2196078431372549" green="0.2196078431372549" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="1" id="VfE-p5-20q"/>

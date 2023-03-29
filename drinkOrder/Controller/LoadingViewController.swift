@@ -28,6 +28,7 @@ class LoadingViewController: UIViewController {
             let centerY = (Int(view.bounds.height) - width)/2
             loadingView.frame = CGRect(x: centerX, y: centerY, width: width, height: width)
             view.addSubview(loadingView)
+            loadingView.contentMode = .scaleAspectFit
             loadingView.loopMode = .loop
             loadingView.animationSpeed = 1
             loadingView.play()

@@ -87,7 +87,6 @@
 		8D417C962993DB29006D05DB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8DDF7622299A6F990088A788 /* loading.xib */,
 				8D4E9F68297CEFEF00B92759 /* FirstTabCollectionViewCell.swift */,
 				8DF91FF4298CBDD4002F0DF3 /* OrderTableViewCell.swift */,
 				8D4E9F64297AECB600B92759 /* CustomSegmentedControl.swift */,
@@ -95,7 +94,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8D417C972993DB58006D05DB /* Method */ = {
+		8D417C972993DB58006D05DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8D4E9F742980F3D500B92759 /* Sugar Ice Enum.swift */,
@@ -103,7 +102,7 @@
 				8D4E9F70297D027000B92759 /* Array Extension.swift */,
 				8D693BD32976819900C8503F /* NetworkError.swift */,
 			);
-			path = Method;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8D712AE8297159E6001A9E68 = {
@@ -127,10 +126,11 @@
 			children = (
 				8D417C952993DB18006D05DB /* Controller */,
 				8D417C962993DB29006D05DB /* View */,
-				8D417C972993DB58006D05DB /* Method */,
+				8D417C972993DB58006D05DB /* Model */,
 				8D712AF4297159E6001A9E68 /* AppDelegate.swift */,
 				8D712AF6297159E6001A9E68 /* SceneDelegate.swift */,
 				8D712AFA297159E6001A9E68 /* Main.storyboard */,
+				8DDF7622299A6F990088A788 /* loading.xib */,
 				8D712AFF297159E7001A9E68 /* LaunchScreen.storyboard */,
 				8D712AFD297159E7001A9E68 /* Assets.xcassets */,
 				8D4BC73A299A667200751693 /* loading.json */,
